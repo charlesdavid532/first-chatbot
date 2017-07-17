@@ -21,6 +21,14 @@ def add():
     sale.insert({'city' : 'Faridabad', 'date': '17-July', 'amount' : '1300'})
     return 'Added Sales row'
 
+@app.route('/query')
+def query():
+    sale = mongo.db.sales
+    output = []
+    for s in sale.find({'city': 'Pune'}):
+        output.append({'city' : s['city'], 'date' : s['date'], 'amount': s['amount']})
+    return jsonify({'output':output})
+
 if __name__ == "__main__":
     app.run()
     
