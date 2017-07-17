@@ -9,7 +9,7 @@ app.config['MONGO_URI'] = 'mongodb://charles:password@ds161042.mlab.com:61042/sa
 
 mongo = PyMongo(app)
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
     return 'OK!'
 
