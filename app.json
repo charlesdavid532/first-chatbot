@@ -1,0 +1,7 @@
+{
+  "name": "Python Sample",
+  "description": "A chatbot app using Python	",
+  "repository": "https://github.com/charlesdavid532/first-chatbot",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["node", "express", "static"]
+}
