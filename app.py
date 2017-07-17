@@ -25,6 +25,13 @@ def verify():
         return request.args["hub.challenge"], 200
     return "Hello world I am Charles", 200
 
+@app.route('/', methods=['POST'])
+def handle_message():
+    data = request.get_json()
+    print(data)
+    sys.stdout.flush()
+    return "ok", 200 
+
 
 @app.route('/add')
 
