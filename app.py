@@ -133,7 +133,8 @@ def getParameters(req):
     city = parameters.get("city")
     duration = parameters.get("duration")
     '''return "The sales data for " + city + "and duration" + duration + "is 12345"'''
-    return "abcd"
+    return "The sales data for Ahmedabda and duration" + duration + "is 12345"
+    '''return "abcd"'''
 
 # Sending a message back through Messenger.
 def send_message(sender_id, message_text):
