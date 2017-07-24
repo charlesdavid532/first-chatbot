@@ -132,10 +132,15 @@ def makeWebhookResult(data):
     
 
 def getParameters(req):
+    print("In get Parameters")
     result = req.get("result")
     parameters = result.get("parameters")
     city = parameters.get("city")
+    print("The city is:")
+    print(city)
     duration = parameters.get("duration")
+    print("The duration is:")
+    print(duration)
     '''return "The sales data for " + city + "and duration" + duration + "is 12345"'''
     return "The sales data for Ahmedabda and duration" + duration + "is 12345"
     '''return "abcd"'''
