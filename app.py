@@ -146,8 +146,8 @@ def getParameters(req):
     print("The sales are:")
     print(sales)
     
-    return "The sales data for " + city + "and duration" + duration + "is 12345"
-    '''return "The sales data for " + city + " and duration" + duration + "is " + sales'''
+    '''return "The sales data for " + city + "and duration" + duration + "is 12345"'''
+    return "The sales data for " + city + " and duration " + duration + " is " + sales
     '''return "abcd"'''
 
 
