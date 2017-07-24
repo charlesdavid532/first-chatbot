@@ -214,7 +214,7 @@ def send_message_staggered(sender_id, message_text):
 def add():
     
     sale = mongo.db.sales
-    sale.insert({'city' : 'Chennai', 'date': 'July', 'amount' : '1700'})
+    sale.insert({'city' : 'Mumbai', 'date': 'June', 'amount' : '1900'})
     return 'Added Sales row'
 
 @app.route('/query')
