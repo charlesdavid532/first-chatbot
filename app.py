@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os, sys, json, requests
 from flask import Flask, request, make_response
 from flask import jsonify
@@ -77,6 +78,8 @@ def handle_message():
 @app.route('/webhook', methods=['POST'])
 def handle_message():
     data = request.get_json()
+    print("Request:")
+    print(json.dumps(req, indent=4))
     res = processRequest(data)
 
     res = json.dumps(res, indent=4)
