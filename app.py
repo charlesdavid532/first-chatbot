@@ -142,19 +142,21 @@ def getParameters(req):
     print("The duration is:")
     print(duration)
     sales = queryData(city, duration)
+    '''
     print("The sales are:")
     print(sales)
-    '''return "The sales data for " + city + "and duration" + duration + "is 12345"'''
-    return "The sales data for " + city + " and duration" + duration + "is " + sales
+    '''
+    return "The sales data for " + city + "and duration" + duration + "is 12345"
+    '''return "The sales data for " + city + " and duration" + duration + "is " + sales'''
     '''return "abcd"'''
 
-
+'''
 def queryData(city, duration):
     sale = mongo.db.sales
     for s in sale.find({'city': city, 'date': duration}):
         amount = s['amount']})
     return amount
-
+'''
 
 # Sending a message back through Messenger.
 def send_message(sender_id, message_text):
