@@ -154,7 +154,7 @@ def getParameters(req):
 def queryData(city, duration):
     sale = mongo.db.sales
     for s in sale.find({'city': city, 'date': duration}):
-        amount = s['amount']})
+        amount = s['amount']
     return amount
 
 
