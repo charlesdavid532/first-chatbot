@@ -153,12 +153,15 @@ def getParameters(req):
 def queryData(city, duration):
     amount = None
     sale = mongo.db.sales
-    for s in sale.find({'city': city, 'date': duration}):
-        amount = s['amount']
-    if amount != None:
-        return amount
-    else:
-        return 'not there in the database'
+    try: 
+        for s in sale.find({'city': city, 'date': duration}):
+            amount = s['amount']
+        if amount != None:
+            return amount
+        else:
+            return 'not there in the database'
+    except Exception, e:
+        print str(e)
 
 
 # Sending a message back through Messenger.
