@@ -171,7 +171,7 @@ def queryData(city, duration):
             return 'not there in the database'
     except Exception:
         print("Could not query database")
-    
+        return ''
     
 
 # Sending a message back through Messenger.
