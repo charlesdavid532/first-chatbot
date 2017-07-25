@@ -108,6 +108,7 @@ def handle_message():
  
 
 def processRequest(req):
+    print('hi')
     if req.get("result").get("action") != "sales.statistics":
         return {}
     myCustomResult = getParameters(req)
