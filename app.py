@@ -160,8 +160,9 @@ def queryData(city, duration):
             return amount
         else:
             return 'not there in the database'
-    except Exception, e:
-        print str(e)
+    except Exception:
+        print 'Could not query database'
+        return ''
 
 
 # Sending a message back through Messenger.
