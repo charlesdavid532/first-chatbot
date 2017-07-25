@@ -154,7 +154,10 @@ def queryData(city, duration):
     sale = mongo.db.sales
     for s in sale.find({'city': city, 'date': duration}):
         amount = s['amount']
-    return amount
+    if amount != None:
+        return amount
+    else:
+        return 'not there in the database'
 
 
 # Sending a message back through Messenger.
