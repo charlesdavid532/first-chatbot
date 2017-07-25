@@ -165,8 +165,12 @@ def queryData(city, duration):
     try: 
         for s in sale.find({'city': city, 'date': duration}):
             amount = s['amount']
+        if amount != None:
+            return amount
+        else:
+            return 'not there in the database'
     except Exception:
-        print 'Could not query database'
+        print("Could not query database")
     
     
 
