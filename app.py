@@ -151,6 +151,7 @@ def getParameters(req):
 
 
 def queryData(city, duration):
+    amount = None
     sale = mongo.db.sales
     for s in sale.find({'city': city, 'date': duration}):
         amount = s['amount']
