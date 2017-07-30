@@ -166,8 +166,8 @@ def getDummyParameters(req):
     
 
 def parsePeriod(period):
-    if period['date'] != None:
-        return queryDataForDate(period['date'])
+    if period[0]['date'] != None:
+        return queryDataForDate(period[0]['date'])
 
 def queryDataForDate(date):
     amount = None
