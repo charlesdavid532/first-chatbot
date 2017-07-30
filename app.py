@@ -170,7 +170,7 @@ def parsePeriod(period):
     if period[0]['date'] != None:
         return queryDataForDate(period[0]['date'])
     elif period[0]['date-period'] != None:
-        return queryDateForDateRange(period[0]['date-period']
+        return queryDateForDateRange(period[0]['date-period'])
     else:
         return 'does not exist in the database'
                                      
