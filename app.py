@@ -191,7 +191,7 @@ def queryDateForDateRange(datePeriod):
         print ("The date is:" + s['date'])
         if dt.strptime(s['date'], "%Y-%m-%d") > dt.strptime(startDate, "%Y-%m-%d"):
             print ("Inside if")
-            amount = amount + s['amount']
+            amount = amount + int(s['amount'])
     if amount != None:
         return amount
     else:
