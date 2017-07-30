@@ -109,10 +109,14 @@ def handle_message():
 
 def processRequest(req):
     print('hi')
-    if req.get("result").get("action") != "sales.statistics":
+    if req.get("result").get("action") == "sales.statistics":
+        myCustomResult = getParameters(req)
+        res = makeWebhookResult(myCustomResult)
+    else if req.get("result").get("action") == "time.timeperiod":
+        myCustomResult = getDummyParameters(req)
+        res = makeWebhookResult(myCustomResult)
+    else:
         return {}
-    myCustomResult = getParameters(req)
-    res = makeWebhookResult(myCustomResult)
     return res
 '''
 This is a very temp function. It is used to just create a sample response in JSON format
@@ -149,6 +153,16 @@ def getParameters(req):
     '''return "The sales data for " + city + "and duration" + duration + "is 12345"'''
     return "The sales data for " + city + " and duration " + duration + " is " + sales
     '''return "abcd"'''
+
+def getDummyParameters(req):
+    result = req.get("result")
+    parameters = result.get("parameters")
+    period = parameters.get("period")
+    print("The period is:")
+    print(period)
+    
+    return "The period is " + period
+    
 
 
 def queryData(city, duration):
