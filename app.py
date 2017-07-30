@@ -167,6 +167,8 @@ def getDummyParameters(req):
     
 
 def parsePeriod(period):
+    print ("Period at index 0 is:" + period[0])
+    print ("trying to get date at index 0" + period[0].get('date'))
     if period[0]['date'] != None:
         return queryDataForDate(period[0]['date'])
     elif period[0]['date-period'] != None:
