@@ -181,7 +181,8 @@ def queryDateForDateRange(datePeriod):
     print ("The start date is:" + startDate)
     endDate = datePeriod.split('/')[1]
     print ("The end date is:" + endDate)
-    amount = None
+    '''amount = None'''
+    amount = 0
     sale = mongo.db.sales
     
     
