@@ -5,6 +5,7 @@ from flask import Flask, request, make_response
 from flask import jsonify
 from flask.ext.pymongo import PyMongo
 from pymessenger import Bot
+from datetime import datetime as dt
 
 
 try:
@@ -168,6 +169,30 @@ def getDummyParameters(req):
 def parsePeriod(period):
     if period[0]['date'] != None:
         return queryDataForDate(period[0]['date'])
+    elif period[0]['date-period'] != None:
+        return queryDateForDateRange(period[0]['date-period']
+
+def queryDateForDateRange(datePeriod):
+    startDate = datePeriod.split('/')[0]
+    print ("The start date is:" + startDate)
+    endDate = datePeriod.split('/')[1]
+    print ("The end date is:" + endDate)
+    amount = None
+    sale = mongo.db.sales
+    
+    
+    try: 
+        for s in sale.find():
+            print ("The date is" + s['date'])
+            if dt.strptime(s['date'], "%y-%m-%d") > dt.strptime(startDate, "%y-%m-%d"):
+                amount = amount + s['amount']
+        if amount != None:
+            return amount
+        else:
+            return 'not there in the database'
+    except Exception:
+        print("Could not query database")
+        return ''                             
 
 def queryDataForDate(date):
     amount = None
