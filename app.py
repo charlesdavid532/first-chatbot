@@ -184,8 +184,21 @@ def queryDateForDateRange(datePeriod):
     '''amount = None'''
     amount = 0
     sale = mongo.db.sales
+
+
+     
+    for s in sale.find():
+        print ("The date is:" + s['date'])
+        print ("Strptime conversion:" + dt.strptime(s['date'], "%y-%m-%d"))
+        if dt.strptime(s['date'], "%y-%m-%d") > dt.strptime(startDate, "%y-%m-%d"):
+            print ("Inside if")
+            amount = amount + s['amount']
+    if amount != None:
+        return amount
+    else:
+        return 'not there in the database'
     
-    
+    '''
     try: 
         for s in sale.find():
             print ("The date is:" + s['date'])
@@ -199,7 +212,8 @@ def queryDateForDateRange(datePeriod):
             return 'not there in the database'
     except Exception:
         print("Could not query database")
-        return ''                             
+        return ''
+    '''
 
 def queryDataForDate(date):
     amount = None
