@@ -193,7 +193,7 @@ def queryDateForDateRange(datePeriod):
             print ("Inside if")
             amount = amount + int(s['amount'])
     if amount != None:
-        return amount
+        return str(amount)
     else:
         return 'not there in the database'
     
