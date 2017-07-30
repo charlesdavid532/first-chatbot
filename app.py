@@ -143,18 +143,26 @@ def getParameters(req):
     city = parameters.get("city")
     print("The city is:")
     print(city)
+    '''
     duration = parameters.get("Duration")
     print("The duration is:")
     print(duration)
     sales = queryData(city, duration)
-    
+    '''
+    period = parameters.get("period")
+    print("The period is:")
+    print(period)
+    sales = parsePeriod(period, city)
     print("The sales are:")
     print(sales)
     
     '''return "The sales data for " + city + "and duration" + duration + "is 12345"'''
-    return "The sales data for " + city + " and duration " + duration + " is " + sales
+    return "The sales data for " + city + " and duration " + period + " is " + sales
     '''return "abcd"'''
 
+'''
+TODO: REMOVE
+'''
 def getDummyParameters(req):
     result = req.get("result")
     parameters = result.get("parameters")
@@ -166,17 +174,17 @@ def getDummyParameters(req):
     return "The amount for this duration is " + amount
     
 
-def parsePeriod(period):
+def parsePeriod(period, city):
     '''print ("Period at index 0 is:" + period[0])'''
     '''print ("trying to get date at index 0" + period[0].get('date'))'''
     if period[0].get('date') != None:
-        return queryDataForDate(period[0].get('date'))
+        return queryDataForDate(period[0].get('date'), city)
     elif period[0].get('date-period') != None:
-        return queryDateForDateRange(period[0].get('date-period'))
+        return queryDateForDateRange(period[0].get('date-period'), city)
     else:
         return 'does not exist in the database'
                                      
-def queryDateForDateRange(datePeriod):
+def queryDateForDateRange(datePeriod, city):
     startDate = datePeriod.split('/')[0]
     print ("The start date is:" + startDate)
     endDate = datePeriod.split('/')[1]
@@ -186,7 +194,7 @@ def queryDateForDateRange(datePeriod):
     sale = mongo.db.sales  
     
     try: 
-        for s in sale.find():
+        for s in sale.find({'city': city}):
             print ("The date is:" + s['date'])
             if (dt.strptime(s['date'], "%Y-%m-%d") >= dt.strptime(startDate, "%Y-%m-%d")) and (dt.strptime(s['date'], "%Y-%m-%d") <= dt.strptime(endDate, "%Y-%m-%d")):
                 print ("Inside if")
@@ -201,45 +209,23 @@ def queryDateForDateRange(datePeriod):
         return ''
     
 
-def queryDataForDate(date):
-    amount = None
+def queryDataForDate(date, city):
     sale = mongo.db.sales
-    
+    startAmount = None
+    amount = 0
     
     try: 
-        for s in sale.find({'date': date}):
-            amount = s['amount']
-        if amount != None:
-            return amount
+        for s in sale.find({'city': city,'date': date}):
+            startAmount = 0
+            amount = amount + int(s['amount'])
+        if startAmount != None:
+            return str(amount)
         else:
             return 'not there in the database'
     except Exception:
         print("Could not query database")
         return ''
 
-def queryData(city, duration):
-    amount = None
-    sale = mongo.db.sales
-    '''
-    for s in sale.find({'city': city, 'date': duration}):
-        amount = s['amount']
-    if amount != None:
-       return amount
-    else:
-       return 'not there in the database'
-    '''
-    
-    try: 
-        for s in sale.find({'city': city, 'date': duration}):
-            amount = s['amount']
-        if amount != None:
-            return amount
-        else:
-            return 'not there in the database'
-    except Exception:
-        print("Could not query database")
-        return ''
-    
 
 # Sending a message back through Messenger.
 def send_message(sender_id, message_text):
