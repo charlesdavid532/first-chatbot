@@ -185,6 +185,7 @@ def parsePeriod(period, city):
         return 'does not exist in the database'
                                      
 def queryDateForDateRange(datePeriod, city):
+    print("Inside Query for Date Period")
     startDate = datePeriod.split('/')[0]
     print ("The start date is:" + startDate)
     endDate = datePeriod.split('/')[1]
@@ -210,12 +211,14 @@ def queryDateForDateRange(datePeriod, city):
     
 
 def queryDataForDate(date, city):
+    print("Inside Query for Date")
     sale = mongo.db.sales
     startAmount = None
     amount = 0
     
     try: 
         for s in sale.find({'city': city,'date': date}):
+            print("The sales amount is:"+s['amount'])
             startAmount = 0
             amount = amount + int(s['amount'])
         if startAmount != None:
