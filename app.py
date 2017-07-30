@@ -160,10 +160,30 @@ def getDummyParameters(req):
     period = parameters.get("period")
     print("The period is:")
     print(period)
+    amount = parsePeriod(period)
     
-    return "The period is " + period
+    return "The amount for this duration is " + amount
     
 
+def parsePeriod(period):
+    if period.get('date') != None:
+        return queryDataForDate(period.get('date'))
+
+def queryDataForDate(date):
+    amount = None
+    sale = mongo.db.sales
+    
+    
+    try: 
+        for s in sale.find({'date': date}):
+            amount = s['amount']
+        if amount != None:
+            return amount
+        else:
+            return 'not there in the database'
+    except Exception:
+        print("Could not query database")
+        return ''
 
 def queryData(city, duration):
     amount = None
