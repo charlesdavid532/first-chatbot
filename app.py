@@ -177,10 +177,10 @@ def getDummyParameters(req):
 def parsePeriod(period, city):
     '''print ("Period at index 0 is:" + period[0])'''
     '''print ("trying to get date at index 0" + period[0].get('date'))'''
-    if period[0].get('date') != None:
-        return queryDataForDate(period[0].get('date'), city)
-    elif period[0].get('date-period') != None:
-        return queryDateForDateRange(period[0].get('date-period'), city)
+    if period.get('date') != None:
+        return queryDataForDate(period.get('date'), city)
+    elif period.get('date-period') != None:
+        return queryDateForDateRange(period.get('date-period'), city)
     else:
         return 'does not exist in the database'
                                      
