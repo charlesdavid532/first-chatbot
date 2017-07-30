@@ -171,7 +171,9 @@ def parsePeriod(period):
         return queryDataForDate(period[0]['date'])
     elif period[0]['date-period'] != None:
         return queryDateForDateRange(period[0]['date-period']
-
+    else:
+        return 'does not exist in the database'
+                                     
 def queryDateForDateRange(datePeriod):
     startDate = datePeriod.split('/')[0]
     print ("The start date is:" + startDate)
