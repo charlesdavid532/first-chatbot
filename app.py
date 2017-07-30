@@ -112,7 +112,7 @@ def processRequest(req):
     if req.get("result").get("action") == "sales.statistics":
         myCustomResult = getParameters(req)
         res = makeWebhookResult(myCustomResult)
-    else if req.get("result").get("action") == "time.timeperiod":
+    elif req.get("result").get("action") == "time.timeperiod":
         myCustomResult = getDummyParameters(req)
         res = makeWebhookResult(myCustomResult)
     else:
