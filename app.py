@@ -183,7 +183,7 @@ def queryDateForDateRange(datePeriod):
     
     try: 
         for s in sale.find():
-            print ("The date is" + s['date'])
+            print ("The date is:" + s['date'])
             if dt.strptime(s['date'], "%y-%m-%d") > dt.strptime(startDate, "%y-%m-%d"):
                 amount = amount + s['amount']
         if amount != None:
