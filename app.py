@@ -3,10 +3,9 @@ import json
 import os, sys, json, requests
 from flask import Flask, request, make_response
 from flask import jsonify
-from flask.ext.pymongo import PyMongo
+from flask_pymongo import PyMongo
 from pymessenger import Bot
 from datetime import datetime as dt
-
 
 try:
     import apiai
@@ -17,6 +16,8 @@ except ImportError:
     import apiai
 
 app = Flask(__name__)
+#app.config.from_object(os.environ['APP_SETTINGS'])
+app.config.from_pyfile('config.py')
 
 # Client Access Token for accessing our API AI Bot
 CLIENT_ACCESS_TOKEN = 'a9907c0d130e42f2a4c9c328a151d119'
@@ -33,7 +34,10 @@ app.config['MONGO_DBNAME'] = 'sales_data'
 app.config['MONGO_URI'] = 'mongodb://charles:password@ds161042.mlab.com:61042/sales_data'
 
 mongo = PyMongo(app)
+print("hello world i am charles david A")
+print(os.environ['APP_SETTINGS'])
 
+#print(str(os.environ['APP_SECRET']))
 '''
 @app.route('/')
 def index():
